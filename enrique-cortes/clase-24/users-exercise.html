@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Class exercise">
     <meta name="keywords" content="HTML, JavaScript">
+    <meta name="author" content="Christian Baez">
+    <meta name="author" content="Jhoan Vasquez">
     <meta name="author" content="Enrique Cortés">
     <title>Clase 24 - ejercicio usuarios</title>
 </head>
@@ -24,39 +26,34 @@
         <p>Adapta tu función de “programamos” para que trabaje con estos nuevos datos.</p>
         <p>Solo permite loguear personas con el usuario y contraseña correcto y que tengan su usuario activo.</p>
         <script>
+
+            
+
+            class User {
+                constructor(givenName, familyName, email, userName, password, active){
+                    this.givenName = givenName;
+                    this.familyName = familyName;
+                    this.email = email;
+                    this.userName = userName;
+                    this.password = password;
+                    this.active = active;
+                }
+            }
+
             // Create user objects
-            var user1 = {
-                givenName: "A",
-                familyName: "B",
-                email: "@example.com",
-                userName: "admin1",
-                password: "12345",
-                active: true
-            };
-
-            var user2 = {
-                givenName: "C",
-                familyName: "D",
-                email: "@example.com",
-                userName: "admin2",
-                password: "12345",
-                active: true
-            };
-
-            var user3 = {
-                givenName: "E",
-                familyName: "F",
-                email: "@example.com",
-                userName: "admin3",
-                password: "12345",
-                active: true
-            };
+            var user1 = new User ("Christian", "Baez", "christian@example.com", "admin1", "12345", true);
+            var user2 = new User ("Jhoan", "Vasquez", "jhoan@example.com", "admin2", "12345", true);
+            var user3 = new User ("Enrique", "Cortés", "enrique@example.com", "admin3", "12345", true);
 
             // Create array that contain user objects.
             var users = new Array(user1, user2, user3);
 
             // Validate objects and array using console.log().
             console.log(users);
+            
+            // let users = ["Pepe", "Juan", "Fiora", "Mafalda", "Salvador", "Gaviota"];
+
+
 
         </script>
     </section>
@@ -65,6 +62,37 @@
         <p>Crea una nueva función que permita agregar nuevos usuarios en tu array.</p>
         <p>Solicita toda la información a través de prompt.</p>
         <script>
+            let userName = "";
+            let password = "";
+
+            // Main function.
+            (function addUser(){
+                //input usuario 
+                userName = prompt("Ingrese un nombre de usuario: ");
+                password = prompt("Ingrese una contraseña: ");
+                //manejo de errores
+                try{
+                    //throw new Error si username vacío
+                    if(!userName){
+                        throw new Error("Información incompleta, no se ingresó un username");
+                    } 
+                    //throw new Error si username repetido
+                    for(let i = 0; i < users.length; i++){
+                        if(userName === users[i].userName && password === users[i].password){
+                            throw new Error("Login exitoso");
+                        }
+                    }
+                    //agregar usuario nuevo al array
+                    //users.push(newUsername);
+                    //alert(`Bienvenido ${newUsername}!`);
+                    //observar que si no hay error se agrega al array
+                    console.log(users);
+                } catch (error){
+                    alert(error);
+                    //observar que si hay un error no se agrega
+                    console.log(users);
+                }
+            })();
 
         </script>
     </section>
