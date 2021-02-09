@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let baseURL = "https://api.giphy.com/v1/gifs/trending";
+        let apiKey = "NdrCf9frEqgHrfN3eyDYb1VfNDXsyh4I";
+        let limitQuery = 10;
+        //let giphyQuery = "https://api.giphy.com/v1/gifs/trending?api_key=NdrCf9frEqgHrfN3eyDYb1VfNDXsyh4I&limit=10";
+        let giphyQuery = `${baseURL}?api_key=${apiKey}&limit=${limitQuery}`;
+
+            function giphyRequest(){
+                fetch(giphyQuery)
+                .then(response => {
+                    return response.json();
+                })
+                .then(json => {
+                  console.log(json)
+                    console.log(json.data[0].images.original.url);
+                })
+                
+            }
+            giphyRequest();
+
+            const viewImage = giphyRequest();
+                viewImage
+                    .then((response) => response.json())
+                    .the((json) => viewImage(json.data.images.url))
+                    .catch((error) => alert("Paila!"));
+            
+    </script>
+</body>
+</html>
